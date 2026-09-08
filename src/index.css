@@ -54,25 +54,3 @@ html { scroll-behavior: smooth; }
     opacity: 1;
   }
 }
-
-.pulse-ring {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  border-radius: 9999px;
-  border: 3px solid #fff;
-  animation: pulse-ring 2.4s ease-out infinite;
-}
-
-@keyframes pulse-ring {
-  0%   { transform: scale(1); opacity: 0.55; }
-  70%  { transform: scale(1.9); opacity: 0; }
-  100% { transform: scale(1.9); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pulse-ring {
-    animation: none;
-    opacity: 0;
-  }
-}

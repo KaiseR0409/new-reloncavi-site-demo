@@ -47,15 +47,20 @@ function StatCard({ s, idx }) {
 
 export default function Nosotros() {
   const clientIdx = useCarousel(CLIENTES.length)
+  const [isoRef, isoInView] = useInView()
 
   return (
     <div>
       {/* INTRO */}
       <section className="bg-lust text-white py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 items-center">
-          <div className="relative w-fit mx-auto">
-            <span className="pulse-ring" aria-hidden="true" />
-            <img src="/img/nosotros/isoreloncavi.png" alt="Reloncaví iso" className="mx-auto w-100" />
+          <div ref={isoRef} className="relative w-fit mx-auto">
+            <span className={`stamp-ring ${isoInView ? "stamp-ring-on" : ""}`} aria-hidden="true" />
+            <img
+              src="/img/nosotros/isoreloncavi.png"
+              alt="Reloncaví iso"
+              className={`mx-auto w-100 stamp-img ${isoInView ? "stamp-img-on" : ""}`}
+            />
           </div>
           <div>
             <p className="text-white text-lg font-semibold">
