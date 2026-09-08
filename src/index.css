@@ -5,3 +5,52 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
+
+.stamp-img {
+  opacity: 0;
+}
+.stamp-img-on {
+  animation: stamp-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--stamp-delay, 0ms);
+}
+.stamp-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 9999px;
+  border: 2px solid #E12013;
+  opacity: 0;
+  transform: scale(0.3);
+}
+.stamp-ring-on {
+  animation: ring-flash 0.55s ease-out both;
+  animation-delay: calc(var(--stamp-delay, 0ms) + 0.4s);
+}
+
+@keyframes stamp-in {
+  0%   { transform: translateY(-70px) rotate(-15deg) scale(0.3); opacity: 0; }
+  55%  { transform: translateY(8px) rotate(4deg) scale(1.08); opacity: 1; }
+  75%  { transform: translateY(-4px) rotate(-2deg) scale(0.98); opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes ring-flash {
+  0%   { transform: scale(0.3); opacity: 0.7; }
+  60%  { transform: scale(1.45); opacity: 0.35; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-img,
+  .stamp-img-on,
+  .stamp-ring,
+  .stamp-ring-on {
+    animation: none;
+  }
+  .stamp-img,
+  .stamp-img-on {
+    opacity: 1;
+  }
+}

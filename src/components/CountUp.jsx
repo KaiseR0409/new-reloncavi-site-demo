@@ -1,32 +1,16 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
+import useInView from "../hooks/useInView"
 
 export default function CountUp({ value, duration = 1500 }) {
-  const ref = useRef(null)
-  const [started, setStarted] = useState(false)
+  const [ref, inView] = useInView(0.4)
   const [display, setDisplay] = useState(0)
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    if (!inView) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setDisplay(value)
       return
     }
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true)
-          obs.disconnect()
-        }
-      },
-      { threshold: 0.4 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [value])
-
-  useEffect(() => {
-    if (!started) return
     let raf
     const t0 = performance.now()
     const tick = (t) => {
@@ -37,7 +21,7 @@ export default function CountUp({ value, duration = 1500 }) {
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [started, value, duration])
+  }, [inView, value, duration])
 
   return <span ref={ref}>{display.toLocaleString("es-CL")}</span>
 }

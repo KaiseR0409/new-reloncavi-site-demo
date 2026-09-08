@@ -1,5 +1,6 @@
-import useCarousel from "../hooks/useCarousel"
 import CountUp from "../components/CountUp"
+import useCarousel from "../hooks/useCarousel"
+import useInView from "../hooks/useInView"
 
 const STATS = [
   { img: "/img/nosotros/TRABAJADOR.png", value: 250, label: "trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
@@ -20,6 +21,30 @@ const CLIENTES = [
   "/img/nosotros/logos-empresa5.jpg",
 ]
 
+function StatCard({ s, idx }) {
+  const [ref, inView] = useInView()
+  return (
+    <div ref={ref} className="text-center">
+      <div className="relative w-fit mx-auto">
+        <span
+          className={`stamp-ring ${inView ? "stamp-ring-on" : ""}`}
+          style={{ "--stamp-delay": `${idx * 180}ms` }}
+          aria-hidden="true"
+        />
+        <img
+          src={s.img}
+          alt={s.label}
+          loading="lazy"
+          className={`mx-auto h-32 object-contain stamp-img ${inView ? "stamp-img-on" : ""}`}
+          style={{ "--stamp-delay": `${idx * 180}ms` }}
+        />
+      </div>
+      <h3 className="text-xl font-bold text-lust mt-4"><CountUp value={s.value} /> {s.label}</h3>
+      <p className="text-outer-space mt-2">{s.desc}</p>
+    </div>
+  )
+}
+
 export default function Nosotros() {
   const clientIdx = useCarousel(CLIENTES.length)
 
@@ -28,16 +53,18 @@ export default function Nosotros() {
       {/* INTRO */}
       <section className="bg-lust text-white py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 items-center">
-          <img src="/img/nosotros/isoreloncavi.png" alt="Reloncaví iso" className="mx-auto w-56" />
+          <img src="/img/nosotros/isoreloncavi.png" alt="Reloncaví iso" className="mx-auto w-100" />
           <div>
-            <p className="text-white/90">
+            <p className="text-white text-lg font-semibold">
               En Reloncaví el cliente es nuestra prioridad, por lo que nos destacamos en ofrecer
               una atención cercana, profesional y a la medida de cada uno, apoyándolo en la
               logística de su negocio y respondiendo de manera rápida y eficiente a sus
               requerimientos.
             </p>
-            <p className="mt-4 text-white/90">Diseñamos y entregamos soluciones.</p>
-            <p className="mt-4 text-white/90">
+            <p className="mt-4 text-white text-lg font-semibold">
+              Diseñamos y entregamos soluciones.
+            </p>
+            <p className="mt-4 text-white text-lg font-semibold">
               Nuestra presencia geográfica nos permite prestar servicios en la zona sur del país
               como un aliado estratégico.
             </p>
@@ -47,19 +74,15 @@ export default function Nosotros() {
 
       {/* HISTORIA */}
       <section className="bg-white-2 py-12 px-6">
-        <h3 className="text-center text-2xl font-bold text-lust mb-8">Historia</h3>
+        <h3 className="text-center text-4xl font-bold text-lust mb-8">Historia</h3>
         <img src="/img/nosotros/copialinea.png" alt="Línea de tiempo" loading="lazy" className="mx-auto max-w-full" />
       </section>
 
       {/* STATS */}
       <section className="bg-isabelline py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
-          {STATS.map((s) => (
-            <div key={s.label} className="text-center">
-              <img src={s.img} alt={s.label} loading="lazy" className="mx-auto h-32 object-contain" />
-              <h3 className="text-xl font-bold text-lust mt-4"><CountUp value={s.value} /> {s.label}</h3>
-              <p className="text-outer-space mt-2">{s.desc}</p>
-            </div>
+          {STATS.map((s, idx) => (
+            <StatCard key={s.label} s={s} idx={idx} />
           ))}
         </div>
       </section>
