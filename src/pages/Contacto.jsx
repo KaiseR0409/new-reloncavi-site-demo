@@ -11,14 +11,12 @@ export default function Contacto() {
         <h1 className="text-3xl font-bold text-white">Contacto</h1>
       </section>
 
-      <section className="text-white py-12 px-6 bg-gradient-to-b from-lust to-[#9c0f29] flex-1">
+      <section className="text-white py-12 px-6 bg-gradient-to-b from-lust to-[#9c0f29] flex-1 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
+          <div className="grid grid-cols-3 gap-6 mb-10 max-w-xl mx-auto">
             {ICONS.map((i, idx) => (
-            <div key={i} className="bg-outer-space rounded-full p-4">
-              <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="mx-auto h-16" />
-            </div>
-          ))}
+              <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="w-full h-20 object-contain" />
+            ))}
           </div>
           <div className="grid gap-10 md:grid-cols-2">
             {CONTACT.map((c) => (
