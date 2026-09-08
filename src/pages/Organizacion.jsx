@@ -1,5 +1,13 @@
 const TEAMS = [
   {
+    name: "Directorio",
+    members: [
+      { img: "andreshuler", name: "Andrés Schüler Skalweit", role: "" },
+      { img: "martinskaiwalt", name: "Martin Skalweit Rudloff", role: "" },
+      { img: "franciscojopbson", name: "Francisco Jobson", role: "" },
+    ],
+  },
+  {
     name: "Gerencia",
     members: [
       { img: "13marianne", name: "Marianne Pérez Sánchez", role: "Subgerente de RRHH y RRLL" },
@@ -51,7 +59,7 @@ export default function Organizacion() {
                     className="w-28 h-28 mx-auto rounded-full object-cover shadow"
                   />
                   <h3 className="mt-3 font-semibold text-outer-space text-sm">{m.name}</h3>
-                  <p className="text-xs text-gray-500 mt-1">{m.role}</p>
+                  {m.role && <p className="text-xs text-gray-500 mt-1">{m.role}</p>}
                 </div>
               ))}
             </div>
