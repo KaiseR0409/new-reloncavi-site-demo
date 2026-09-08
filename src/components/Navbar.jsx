@@ -1,4 +1,4 @@
-import { ChevronDown, Linkedin, Mail, Menu, X } from "lucide-react"
+import { ChevronDown, Linkedin, Mail } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 
 import { CONTACT } from "../data/contact"
@@ -15,6 +15,15 @@ const LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  const closeMenu = () => {
+    setClosing(true)
+    setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, 200)
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -59,20 +68,26 @@ export default function Navbar() {
           </div>
         </div>
 
-        <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menú">
-          {open ? <X size={24} /> : <Menu size={24} />}
+        <button
+          className="lg:hidden relative w-6 h-6"
+          onClick={() => (open ? closeMenu() : setOpen(true))}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+        >
+          <span className={`hamburger-bar transition-all duration-300 ${open ? "rotate-45" : "-translate-y-[5px]"}`} />
+          <span className={`hamburger-bar transition-all duration-300 ${open ? "-rotate-45" : "translate-y-[5px]"}`} />
         </button>
       </nav>
 
       {open && (
-        <div className="lg:hidden border-t px-4 py-4 flex flex-col gap-4">
+        <div className={`lg:hidden border-t px-4 py-4 flex flex-col gap-4 ${closing ? "menu-panel-out" : "menu-panel"}`}>
           {LINKS.map((l) => (
-            <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)} className="text-outer-space font-medium">
+            <NavLink key={l.to} to={l.to} onClick={closeMenu} className="text-outer-space font-medium">
               {l.label}
             </NavLink>
           ))}
-          <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Denunciar/" className="text-outer-space font-medium">Denunciar</a>
-          <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Seguimiento/" className="text-outer-space font-medium">Consultar Denuncia</a>
+          <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Denunciar/" className="text-outer-space font-medium" onClick={closeMenu}>Denunciar</a>
+          <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Seguimiento/" className="text-outer-space font-medium" onClick={closeMenu}>Consultar Denuncia</a>
         </div>
       )}
     </header>

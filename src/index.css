@@ -69,3 +69,39 @@ html { scroll-behavior: smooth; }
     animation: none;
   }
 }
+
+.hamburger-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: #333c45;
+}
+
+.menu-panel {
+  animation: menu-in 0.25s ease-out;
+}
+.menu-panel-out {
+  animation: menu-out 0.2s ease-in forwards;
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes menu-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hamburger-bar,
+  .menu-panel,
+  .menu-panel-out {
+    transition: none;
+    animation: none;
+  }
+}
