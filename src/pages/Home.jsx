@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+
 import { Link } from "react-router-dom"
+import useEmblaCarousel from "embla-carousel-react"
 
 const NEGOCIOS = [
   { img: "/img/negocios/forestalrelon.webp", title: "Administración Bodegas Celulosa", href: "/servicios#bodegas" },
@@ -7,14 +9,51 @@ const NEGOCIOS = [
   { img: "/img/negocios/servicios.webp", title: "Estiba y Desestiba Portuarias", href: "/servicios#portuarias" },
 ]
 
+const HERO_MESSAGES = [
+  {
+    title: "Reloncaví",
+    description: "Logística portuaria, almacenaje y despacho a lo largo del sur de Chile.",
+  },
+  {
+    title: "Almacenaje especializado",
+    description: "Bodegas y operaciones diseñadas para mantener tu carga en movimiento.",
+  },
+  {
+    title: "Operaciones portuarias",
+    description: "Experiencia en estiba, desestiba y atención eficiente de naves y cargas.",
+  },
+  {
+    title: "Despacho eficiente",
+    description: "Soluciones logísticas cercanas, seguras y a la medida de cada operación.",
+  },
+]
+
+
 export default function Home() {
   const [playHeroVideo, setPlayHeroVideo] = useState(false)
+  const [selectedHero, setSelectedHero] = useState(0)
+  const [heroRef, heroApi] = useEmblaCarousel({ loop: true })
 
   useEffect(() => {
     const connection = navigator.connection
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     setPlayHeroVideo(!reducedMotion && !connection?.saveData)
   }, [])
+
+  useEffect(() => {
+    if (!heroApi) return
+
+    const updateSelectedHero = () => setSelectedHero(heroApi.selectedScrollSnap())
+    heroApi.on("select", updateSelectedHero)
+    updateSelectedHero()
+    return () => heroApi.off("select", updateSelectedHero)
+  }, [heroApi])
+
+  useEffect(() => {
+    if (!heroApi || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    const id = window.setInterval(() => heroApi.scrollNext(), 6500)
+    return () => window.clearInterval(id)
+  }, [heroApi])
 
   return (
     <div>
@@ -37,11 +76,29 @@ export default function Home() {
         )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 h-full flex items-center justify-center px-6 text-center text-white">
-          <div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight">Reloncaví</h1>
-            <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto">
-              Logística portuaria, almacenaje y despacho a lo largo del sur de Chile.
-            </p>
+          <div className="w-full max-w-5xl">
+            <div ref={heroRef} className="overflow-hidden" aria-roledescription="carrusel" aria-label="Servicios Reloncaví">
+              <div className="flex touch-pan-y">
+                {HERO_MESSAGES.map((message) => (
+                  <article key={message.title} className="min-w-0 flex-[0_0_100%] px-2">
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tight">{message.title}</h1>
+                    <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto">{message.description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 flex justify-center gap-2" aria-label="Selector de mensajes">
+              {HERO_MESSAGES.map((message, index) => (
+                <button
+                  key={message.title}
+                  type="button"
+                  onClick={() => heroApi?.scrollTo(index)}
+                  className={`h-2.5 rounded-full transition-all duration-500 ${selectedHero === index ? "w-8 bg-white" : "w-2.5 bg-white/50 hover:bg-lust/80"}`}
+                  aria-label={`Ver: ${message.title}`}
+                  aria-current={selectedHero === index ? "true" : undefined}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -80,3 +137,4 @@ export default function Home() {
     </div>
   )
 }
+
