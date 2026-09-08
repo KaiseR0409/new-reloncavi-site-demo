@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
+
 import { CONTACT } from "../data/contact"
 import StampedIcon from "../components/StampedIcon"
 
@@ -8,14 +9,14 @@ export default function Contacto() {
   return (
     <div className="flex flex-col flex-1">
       <section className="bg-lust py-12 px-6 text-center">
-        <h1 className="text-3xl font-bold text-white">Contacto</h1>
+        <h1 className="text-4xl font-bold text-white">Contacto</h1>
       </section>
 
       <section className="text-white py-12 px-6 bg-gradient-to-b from-lust to-[#9c0f29] flex-1 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-3 gap-6 mb-10 max-w-xl mx-auto">
             {ICONS.map((i, idx) => (
-              <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="w-full h-20 object-contain" />
+              <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="w-full h-60 object-contain" />
             ))}
           </div>
           <div className="grid gap-10 md:grid-cols-2">
