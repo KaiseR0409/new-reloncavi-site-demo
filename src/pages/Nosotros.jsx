@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import useCarousel from "../hooks/useCarousel"
 
 const STATS = [
   { img: "/img/nosotros/TRABAJADOR.png", title: "250 trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
@@ -18,15 +18,6 @@ const CLIENTES = [
   "/img/nosotros/logos-empresas4.jpg",
   "/img/nosotros/logos-empresa5.jpg",
 ]
-
-function useCarousel(len, interval = 3000) {
-  const [i, setI] = useState(0)
-  useEffect(() => {
-    const id = setInterval(() => setI((p) => (p + 1) % len), interval)
-    return () => clearInterval(id)
-  }, [len, interval])
-  return i
-}
 
 export default function Nosotros() {
   const clientIdx = useCarousel(CLIENTES.length)

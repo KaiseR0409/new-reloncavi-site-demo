@@ -1,12 +1,7 @@
-import { useState, useEffect } from "react"
+import useCarousel from "../hooks/useCarousel"
 
-// Local carousel (identical pattern to Nosotros)
 function Carousel({ images, interval = 3000 }) {
-  const [i, setI] = useState(0)
-  useEffect(() => {
-    const id = setInterval(() => setI((p) => (p + 1) % images.length), interval)
-    return () => clearInterval(id)
-  }, [images.length, interval])
+  const i = useCarousel(images.length, interval)
   return (
     <div className="max-w-4xl mx-auto">
       <img src={images[i]} alt="Comunidad" className="w-full h-72 object-cover rounded-lg shadow" />
