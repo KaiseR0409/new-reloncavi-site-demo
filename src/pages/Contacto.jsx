@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin } from "lucide-react"
 import { CONTACT } from "../data/contact"
+import StampedIcon from "../components/StampedIcon"
 
 const ICONS = ["/img/contacto/1blackbarcoicon.png", "/img/contacto/black.png", "/img/contacto/blackunoicon.png"]
 
@@ -13,9 +14,9 @@ export default function Contacto() {
       <section className="bg-outer-space text-white py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
-            {ICONS.map((i) => (
-              <img key={i} src={i} alt="Icono" loading="lazy" className="mx-auto h-16" />
-            ))}
+            {ICONS.map((i, idx) => (
+            <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="mx-auto h-16" />
+          ))}
           </div>
           <div className="grid gap-10 md:grid-cols-2">
             {CONTACT.map((c) => (

@@ -1,6 +1,6 @@
 import CountUp from "../components/CountUp"
+import StampedIcon from "../components/StampedIcon"
 import useCarousel from "../hooks/useCarousel"
-import useInView from "../hooks/useInView"
 
 const STATS = [
   { img: "/img/nosotros/TRABAJADOR.png", value: 250, label: "trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
@@ -22,23 +22,9 @@ const CLIENTES = [
 ]
 
 function StatCard({ s, idx }) {
-  const [ref, inView] = useInView()
   return (
-    <div ref={ref} className="text-center">
-      <div className="relative w-fit mx-auto">
-        <span
-          className={`stamp-ring ${inView ? "stamp-ring-on" : ""}`}
-          style={{ "--stamp-delay": `${idx * 180}ms` }}
-          aria-hidden="true"
-        />
-        <img
-          src={s.img}
-          alt={s.label}
-          loading="lazy"
-          className={`mx-auto h-32 object-contain stamp-img ${inView ? "stamp-img-on" : ""}`}
-          style={{ "--stamp-delay": `${idx * 180}ms` }}
-        />
-      </div>
+    <div className="text-center">
+      <StampedIcon src={s.img} alt={s.label} delay={idx * 180} className="mx-auto h-32 object-contain" />
       <h3 className="text-xl font-bold text-lust mt-4"><CountUp value={s.value} /> {s.label}</h3>
       <p className="text-outer-space mt-2">{s.desc}</p>
     </div>
@@ -47,21 +33,13 @@ function StatCard({ s, idx }) {
 
 export default function Nosotros() {
   const clientIdx = useCarousel(CLIENTES.length)
-  const [isoRef, isoInView] = useInView()
 
   return (
     <div>
       {/* INTRO */}
       <section className="bg-lust text-white py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 items-center">
-          <div ref={isoRef} className="relative w-fit mx-auto">
-            <span className={`stamp-ring ${isoInView ? "stamp-ring-on" : ""}`} aria-hidden="true" />
-            <img
-              src="/img/nosotros/isoreloncavi.png"
-              alt="Reloncaví iso"
-              className={`mx-auto w-100 stamp-img ${isoInView ? "stamp-img-on" : ""}`}
-            />
-          </div>
+          <StampedIcon src="/img/nosotros/isoreloncavi.png" alt="Reloncaví iso" className="mx-auto w-100" />
           <div>
             <p className="text-white text-lg font-semibold">
               En Reloncaví el cliente es nuestra prioridad, por lo que nos destacamos en ofrecer

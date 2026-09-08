@@ -1,3 +1,5 @@
+import StampedIcon from "../components/StampedIcon"
+
 const ICONS = [
   { img: "/img/negocios/gruaicon.png", title: "Administración Bodegas Celulosa" },
   { img: "/img/negocios/bodegaicon.png", title: "Ensacados y despacho Fertilizantes" },
@@ -29,15 +31,15 @@ export default function Servicios() {
   return (
     <div>
       <section className="bg-lust py-12 px-6 text-center">
-        <h1 className="text-3xl font-bold text-white">Negocios</h1>
+        <h1 className="text-4xl font-bold text-white">Negocios</h1>
       </section>
 
       <section className="relative bg-cover bg-center bg-fixed py-16 px-6" style={{ backgroundImage: "url(/img/negocios/DJI_0072.jpg)" }}>
         <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
         <div className="relative max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
-          {ICONS.map((i) => (
+          {ICONS.map((i, idx) => (
             <div key={i.title} className="text-center">
-              <img src={i.img} alt={i.title} loading="lazy" className="mx-auto h-32 object-contain" />
+              <StampedIcon src={i.img} alt={i.title} delay={idx * 180} className="mx-auto h-32 object-contain" />
               <h3 className="text-lg font-semibold text-white mt-4">{i.title}</h3>
             </div>
           ))}
@@ -49,8 +51,8 @@ export default function Servicios() {
           <div className={`max-w-7xl mx-auto grid gap-10 items-center md:grid-cols-2`}>
             <img src={s.img} alt={s.title} loading="lazy" className={`w-full rounded-lg shadow ${idx % 2 === 1 ? "md:order-2" : ""}`} />
             <div>
-              <h2 className="text-2xl font-bold text-lust mb-4">{s.title}</h2>
-              <p className="text-outer-space leading-relaxed">{s.text}</p>
+              <h2 className="text-3xl font-bold text-lust mb-4">{s.title}</h2>
+              <p className="text-outer-space text-lg leading-relaxed">{s.text}</p>
             </div>
           </div>
         </section>
