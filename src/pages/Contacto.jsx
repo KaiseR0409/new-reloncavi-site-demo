@@ -11,8 +11,9 @@ export default function Contacto() {
         <h1 className="text-3xl font-bold text-white">Contacto</h1>
       </section>
 
-      <section className="bg-outer-space text-white py-12 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-white-2 text-outer-space py-12 px-6 relative">
+        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: "url(/img/2map.png)" }} aria-hidden="true" />
+        <div className="max-w-7xl mx-auto relative">
           <div className="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
             {ICONS.map((i, idx) => (
             <StampedIcon key={i} src={i} alt="Icono" delay={idx * 180} className="mx-auto h-16" />
@@ -21,7 +22,7 @@ export default function Contacto() {
           <div className="grid gap-10 md:grid-cols-2">
             {CONTACT.map((c) => (
               <div key={c.region}>
-                <h3 className="text-selective-yellow text-xl font-bold mb-4">{c.region.toUpperCase()}</h3>
+                <h3 className="text-lust text-xl font-bold mb-4">{c.region.toUpperCase()}</h3>
                 <p className="flex items-center gap-2 mb-3"><MapPin size={18} /> {c.address}</p>
                 <p className="flex items-center gap-2 mb-3"><Phone size={18} /> {c.phone}</p>
                 <a
