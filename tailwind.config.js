@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        lust: "#b3123f",
+        lust: "#E12013",
         "white-2": "#f2f2f2",
         isabelline: "#f4f0ec",
         "outer-space": "#333c45",

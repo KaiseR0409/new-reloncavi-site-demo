@@ -32,12 +32,12 @@ export default function Servicios() {
         <h1 className="text-3xl font-bold text-white">Negocios</h1>
       </section>
 
-      <section className="bg-white-2 py-12 px-6">
+      <section className="bg-lust py-12 px-6">
         <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
           {ICONS.map((i) => (
             <div key={i.title} className="text-center">
               <img src={i.img} alt={i.title} loading="lazy" className="mx-auto h-32 object-contain" />
-              <h3 className="text-lg font-semibold text-outer-space mt-4">{i.title}</h3>
+              <h3 className="text-lg font-semibold text-white mt-4">{i.title}</h3>
             </div>
           ))}
         </div>
