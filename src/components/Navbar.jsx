@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import { useState } from "react"
 import { Mail, Linkedin, Menu, X, ChevronDown } from "lucide-react"
+import { CONTACT } from "../data/contact"
 
 const LINKS = [
   { to: "/", label: "Inicio" },
@@ -17,7 +18,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="bg-lust text-white flex justify-end gap-2 px-4 py-1.5">
-        <a href="mailto:contacto@reloncavi.cl" className="p-1 hover:opacity-80" aria-label="Correo">
+        <a href={`mailto:${CONTACT[0].email}`} className="p-1 hover:opacity-80" aria-label="Correo">
           <Mail size={16} />
         </a>
         <a
@@ -50,7 +51,7 @@ export default function Navbar() {
             <button className="text-sm font-semibold text-outer-space hover:text-lust flex items-center">
               Canal de Denuncias <ChevronDown size={14} className="ml-1" />
             </button>
-            <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+            <div className="hidden group-hover:block group-focus-within:block absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
               <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Denunciar/" className="block px-4 py-2 text-sm hover:bg-gray-50">Denunciar</a>
               <a href="https://canaldenuncias.reloncavi.cl/Denuncia/Seguimiento/" className="block px-4 py-2 text-sm hover:bg-gray-50">Consultar Denuncia</a>
             </div>
