@@ -14,7 +14,7 @@ export default function Contacto() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
             {ICONS.map((i) => (
-              <img key={i} src={i} alt="Icono" className="mx-auto h-16" />
+              <img key={i} src={i} alt="Icono" loading="lazy" className="mx-auto h-16" />
             ))}
           </div>
           <div className="grid gap-10 md:grid-cols-2">

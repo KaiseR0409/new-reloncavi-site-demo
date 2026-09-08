@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
         ))}
         <div className="flex items-center justify-center md:justify-end">
-          <img src="/img/logs/reloncabilogo.png" alt="Reloncaví" className="w-32" />
+          <img src="/img/logs/reloncabilogo.png" alt="Reloncaví" loading="lazy" className="w-32" />
         </div>
       </div>
       <div className="border-t border-white/20 py-4 text-center text-sm text-white/70">

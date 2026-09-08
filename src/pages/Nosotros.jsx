@@ -56,7 +56,7 @@ export default function Nosotros() {
       {/* HISTORIA */}
       <section className="bg-white-2 py-12 px-6">
         <h3 className="text-center text-2xl font-bold text-lust mb-8">Historia</h3>
-        <img src="/img/nosotros/copialinea.png" alt="Línea de tiempo" className="mx-auto max-w-full" />
+        <img src="/img/nosotros/copialinea.png" alt="Línea de tiempo" loading="lazy" className="mx-auto max-w-full" />
       </section>
 
       {/* STATS */}
@@ -64,7 +64,7 @@ export default function Nosotros() {
         <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
           {STATS.map((s) => (
             <div key={s.title} className="text-center">
-              <img src={s.img} alt={s.title} className="mx-auto h-32 object-contain" />
+              <img src={s.img} alt={s.title} loading="lazy" className="mx-auto h-32 object-contain" />
               <h3 className="text-xl font-bold text-lust mt-4">{s.title}</h3>
               <p className="text-outer-space mt-2">{s.desc}</p>
             </div>
@@ -121,7 +121,7 @@ export default function Nosotros() {
             </ul>
           </div>
           <div className="flex justify-center">
-            <img src="/img/nosotros/MAP-.png" alt="Mapa" className="max-h-72" />
+            <img src="/img/nosotros/MAP-.png" alt="Mapa" loading="lazy" className="max-h-72" />
           </div>
           <div>
             <h3 className="text-xl font-bold text-lust mb-4">Operaciones</h3>

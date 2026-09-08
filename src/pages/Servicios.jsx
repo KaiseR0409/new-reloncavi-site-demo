@@ -36,7 +36,7 @@ export default function Servicios() {
         <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
           {ICONS.map((i) => (
             <div key={i.title} className="text-center">
-              <img src={i.img} alt={i.title} className="mx-auto h-32 object-contain" />
+              <img src={i.img} alt={i.title} loading="lazy" className="mx-auto h-32 object-contain" />
               <h3 className="text-lg font-semibold text-outer-space mt-4">{i.title}</h3>
             </div>
           ))}
@@ -46,7 +46,7 @@ export default function Servicios() {
       {SERVICES.map((s, idx) => (
         <section id={s.id} key={s.id} className={`py-16 px-6 ${idx % 2 === 0 ? "bg-white" : "bg-white-2"}`}>
           <div className={`max-w-7xl mx-auto grid gap-10 items-center md:grid-cols-2`}>
-            <img src={s.img} alt={s.title} className={`w-full rounded-lg shadow ${idx % 2 === 1 ? "md:order-2" : ""}`} />
+            <img src={s.img} alt={s.title} loading="lazy" className={`w-full rounded-lg shadow ${idx % 2 === 1 ? "md:order-2" : ""}`} />
             <div>
               <h2 className="text-2xl font-bold text-lust mb-4">{s.title}</h2>
               <p className="text-outer-space leading-relaxed">{s.text}</p>

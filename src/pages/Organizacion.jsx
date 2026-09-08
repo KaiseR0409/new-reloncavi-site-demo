@@ -47,6 +47,7 @@ export default function Organizacion() {
                   <img
                     src={`/img/equipo/${m.img}.jpg`}
                     alt={m.name}
+                    loading="lazy"
                     className="w-28 h-28 mx-auto rounded-full object-cover shadow"
                   />
                   <h3 className="mt-3 font-semibold text-outer-space text-sm">{m.name}</h3>

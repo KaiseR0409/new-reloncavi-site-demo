@@ -48,7 +48,7 @@ export default function Home() {
             {NEGOCIOS.map((n) => (
               <Link key={n.title} to={n.href} className="group bg-white rounded-xl shadow hover:shadow-lg overflow-hidden transition">
                 <div className="overflow-hidden h-52">
-                  <img src={n.img} alt={n.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                  <img src={n.img} alt={n.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                 </div>
                 <div className="p-5 text-center font-semibold text-outer-space">
                   {n.title}

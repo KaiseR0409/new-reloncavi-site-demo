@@ -64,7 +64,7 @@ export default function Comunidad() {
       <section className="bg-isabelline py-12 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-8 text-center md:text-left">
           <p className="text-2xl italic font-light text-lust">"Juntos el mejor Equipo."</p>
-          <img src="/img/comunidad/manos-puzzle.jpg" alt="Juntos el mejor equipo" className="w-full rounded-lg shadow" />
+          <img src="/img/comunidad/manos-puzzle.jpg" alt="Juntos el mejor equipo" loading="lazy" className="w-full rounded-lg shadow" />
         </div>
       </section>
     </div>
