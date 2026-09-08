@@ -1,25 +1,27 @@
 import useCarousel from "../hooks/useCarousel"
+import useInView from "../hooks/useInView"
 
 function Carousel({ images, interval = 3000 }) {
-  const i = useCarousel(images.length, interval)
+  const [ref, inView] = useInView(0.1)
+  const i = useCarousel(images.length, interval, inView)
   return (
-    <div className="max-w-4xl mx-auto">
-      <img key={i} src={images[i]} alt="Comunidad" className="w-full h-72 object-cover rounded-lg shadow carousel-in" />
+    <div ref={ref} className="max-w-4xl mx-auto">
+      <img key={i} src={images[i]} alt="Comunidad" loading="lazy" decoding="async" width="1200" height="500" className="w-full h-72 object-cover rounded-lg shadow carousel-in" />
     </div>
   )
 }
 
 const COMUNIDAD = [
-  "/img/comunidad/redes5.jpg", "/img/comunidad/redes2.jpg", "/img/comunidad/redes3.jpg",
-  "/img/comunidad/redes1.jpg", "/img/comunidad/redes6.jpg", "/img/comunidad/redes8.jpg",
-  "/img/comunidad/11comunidad.jpg", "/img/comunidad/redes12.jpg",
-  "/img/comunidad/somostodos3.jpg", "/img/comunidad/somostodos2.jpg", "/img/comunidad/somostodos.jpg",
+  "/img/comunidad/redes5.webp", "/img/comunidad/redes2.webp", "/img/comunidad/redes3.webp",
+  "/img/comunidad/redes1.webp", "/img/comunidad/redes6.webp", "/img/comunidad/redes8.webp",
+  "/img/comunidad/11comunidad.webp", "/img/comunidad/redes12.webp",
+  "/img/comunidad/somostodos3.webp", "/img/comunidad/somostodos2.webp", "/img/comunidad/somostodos.webp",
 ]
 
 const ACTIVIDADES = [
-  "/img/comunidad/redes10.jpg", "/img/comunidad/redes4.jpg", "/img/comunidad/redes7.jpg",
-  "/img/comunidad/redes9.jpg", "/img/comunidad/redes11.jpg",
-  "/img/comunidad/actividades.jpg", "/img/comunidad/actividades2.jpg",
+  "/img/comunidad/redes10.webp", "/img/comunidad/redes4.webp", "/img/comunidad/redes7.webp",
+  "/img/comunidad/redes9.webp", "/img/comunidad/redes11.webp",
+  "/img/comunidad/actividades.webp", "/img/comunidad/actividades2.webp",
 ]
 
 export default function Comunidad() {
@@ -59,7 +61,7 @@ export default function Comunidad() {
       <section className="bg-isabelline py-12 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-8 text-center md:text-left">
           <p className="text-2xl italic font-light text-lust">"Juntos el mejor Equipo."</p>
-          <img src="/img/comunidad/manos-puzzle.jpg" alt="Juntos el mejor equipo" loading="lazy" className="w-full rounded-lg shadow" />
+          <img src="/img/comunidad/manos-puzzle.webp" alt="Juntos el mejor equipo" loading="lazy" decoding="async" className="w-full rounded-lg shadow" />
         </div>
       </section>
     </div>

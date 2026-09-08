@@ -1,6 +1,7 @@
 import CountUp from "../components/CountUp"
 import StampedIcon from "../components/StampedIcon"
 import useCarousel from "../hooks/useCarousel"
+import useInView from "../hooks/useInView"
 
 const STATS = [
   { img: "/img/nosotros/TRABAJADOR.png", value: 250, label: "trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
@@ -32,7 +33,8 @@ function StatCard({ s, idx }) {
 }
 
 export default function Nosotros() {
-  const clientIdx = useCarousel(CLIENTES.length)
+  const [clientsRef, clientsInView] = useInView(0.1)
+  const clientIdx = useCarousel(CLIENTES.length, 3000, clientsInView)
 
   return (
     <div>
@@ -76,7 +78,7 @@ export default function Nosotros() {
       {/* VOLUMEN */}
       <section
         className="bg-cover bg-center bg-fixed py-16 px-6 text-center text-white"
-        style={{ backgroundImage: "url(/img/nosotros/foto5.jpg)" }}
+        style={{ backgroundImage: "url(/img/nosotros/foto5.webp)" }}
       >
         <div className="bg-black/80 py-12 rounded-lg max-w-6xl mx-auto">
           <h3 className="text-3xl font-bold text-lust mb-8">Volumen Anual</h3>
@@ -94,9 +96,9 @@ export default function Nosotros() {
       {/* CLIENTES */}
       <section className="bg-white-2 py-12 px-6">
         <h3 className="text-center text-4xl font-bold text-lust mb-8">Principales Clientes</h3>
-        <div className="max-w-3xl mx-auto">
+        <div ref={clientsRef} className="max-w-3xl mx-auto">
           <div className="relative">
-            <img key={clientIdx} src={CLIENTES[clientIdx]} alt="Clientes" className="w-full rounded-lg shadow carousel-in" />
+            <img key={clientIdx} src={CLIENTES[clientIdx]} alt="Clientes" loading="lazy" decoding="async" className="w-full rounded-lg shadow carousel-in" />
           </div>
           <div className="flex justify-center gap-2 mt-4">
             {CLIENTES.map((_, idx) => (

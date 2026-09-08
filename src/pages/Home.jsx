@@ -1,21 +1,40 @@
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 const NEGOCIOS = [
-  { img: "/img/negocios/forestalrelon.jpg", title: "Administración Bodegas Celulosa", href: "/servicios#bodegas" },
-  { img: "/img/negocios/granel.png", title: "Ensacados y Despacho Fertilizantes", href: "/servicios#fertilizantes" },
-  { img: "/img/negocios/servicios.png", title: "Estiba y Desestiba Portuarias", href: "/servicios#portuarias" },
+  { img: "/img/negocios/forestalrelon.webp", title: "Administración Bodegas Celulosa", href: "/servicios#bodegas" },
+  { img: "/img/negocios/granel.webp", title: "Ensacados y Despacho Fertilizantes", href: "/servicios#fertilizantes" },
+  { img: "/img/negocios/servicios.webp", title: "Estiba y Desestiba Portuarias", href: "/servicios#portuarias" },
 ]
 
 export default function Home() {
+  const [playHeroVideo, setPlayHeroVideo] = useState(false)
+
+  useEffect(() => {
+    const connection = navigator.connection
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    setPlayHeroVideo(!reducedMotion && !connection?.saveData)
+  }, [])
+
   return (
     <div>
       {/* HERO */}
       <section className="relative h-[70vh] min-h-[420px] overflow-hidden">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/vid/reloncavivideoweb.mp4"
-          autoPlay loop muted playsInline
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/vid/reloncavi-hero-poster.webp)" }}
+          aria-hidden="true"
         />
+        {playHeroVideo && (
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/vid/reloncavi-hero.mp4"
+            poster="/vid/reloncavi-hero-poster.webp"
+            preload="metadata"
+            autoPlay loop muted playsInline
+            aria-hidden="true"
+          />
+        )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 h-full flex items-center justify-center px-6 text-center text-white">
           <div>
@@ -48,7 +67,7 @@ export default function Home() {
             {NEGOCIOS.map((n) => (
               <Link key={n.title} to={n.href} className="group bg-white rounded-xl shadow hover:shadow-lg overflow-hidden transition">
                 <div className="overflow-hidden h-52">
-                  <img src={n.img} alt={n.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                  <img src={n.img} alt={n.title} loading="lazy" decoding="async" width="1200" height="1200" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                 </div>
                 <div className="p-5 text-center font-semibold text-outer-space">
                   {n.title}
