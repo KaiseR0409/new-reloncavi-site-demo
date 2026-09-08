@@ -137,18 +137,18 @@ export default function Nosotros() {
       <section className="bg-isabelline py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-3 items-start">
           <div>
-            <h3 className="text-xl font-bold text-lust mb-4">Oficinas</h3>
-            <ul className="space-y-2 text-outer-space">
+            <h3 className="text-4xl font-bold text-lust mb-4">Oficinas</h3>
+            <ul className="space-y-2 text-xl text-outer-space">
               <li>Almirante Latorre 795 San Vicente, Talcahuano</li>
               <li>Avenida Angelmó 1673, Puerto Montt</li>
             </ul>
           </div>
           <div className="flex justify-center">
-            <img src="/img/nosotros/MAP-.png" alt="Mapa" loading="lazy" className="max-h-72" />
+            <img src="/img/nosotros/MAP-.png" alt="Mapa" loading="lazy" className="max-h-[26rem]" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-lust mb-4">Operaciones</h3>
-            <ul className="space-y-2 text-outer-space">
+            <h3 className="text-4xl font-bold text-lust mb-4">Operaciones</h3>
+            <ul className="space-y-2 text-xl text-outer-space">
               <li>• Horcones</li>
               <li>• Nueva Aldea</li>
               <li>• Mariquina</li>
