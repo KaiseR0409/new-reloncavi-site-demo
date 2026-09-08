@@ -32,8 +32,9 @@ export default function Servicios() {
         <h1 className="text-3xl font-bold text-white">Negocios</h1>
       </section>
 
-      <section className="bg-lust py-12 px-6">
-        <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+      <section className="relative bg-cover bg-center bg-fixed py-16 px-6" style={{ backgroundImage: "url(/img/negocios/DJI_0072.jpg)" }}>
+        <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+        <div className="relative max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
           {ICONS.map((i) => (
             <div key={i.title} className="text-center">
               <img src={i.img} alt={i.title} loading="lazy" className="mx-auto h-32 object-contain" />
