@@ -4,7 +4,7 @@ function Carousel({ images, interval = 3000 }) {
   const i = useCarousel(images.length, interval)
   return (
     <div className="max-w-4xl mx-auto">
-      <img src={images[i]} alt="Comunidad" className="w-full h-72 object-cover rounded-lg shadow" />
+      <img key={i} src={images[i]} alt="Comunidad" className="w-full h-72 object-cover rounded-lg shadow carousel-in" />
     </div>
   )
 }
