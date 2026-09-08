@@ -1,7 +1,8 @@
+import { ChevronDown, Linkedin, Mail, Menu, X } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
-import { useState } from "react"
-import { Mail, Linkedin, Menu, X, ChevronDown } from "lucide-react"
+
 import { CONTACT } from "../data/contact"
+import { useState } from "react"
 
 const LINKS = [
   { to: "/", label: "Inicio" },
@@ -17,13 +18,13 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="bg-lust text-white flex justify-end gap-2 px-4 py-1.5">
-        <a href={`mailto:${CONTACT[0].email}`} className="p-1 hover:opacity-80" aria-label="Correo">
+      <div className="max-w-7xl mx-auto text-white flex justify-end gap-2 px-4 py-1.5">
+        <a href={`mailto:${CONTACT[0].email}`} className="p-1 hover:opacity-80 bg-lust" aria-label="Correo">
           <Mail size={16} />
         </a>
         <a
-          href="https://www.linkedin.com/company/1970509/admin/"
-          className="p-1 hover:opacity-80"
+          href="https://www.linkedin.com/company/servicios-portuarios-reloncavi-ltda./"
+          className="p-1 hover:opacity-80 bg-lust"
           aria-label="LinkedIn"
         >
           <Linkedin size={16} />

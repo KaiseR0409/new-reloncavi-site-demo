@@ -30,8 +30,8 @@ export default function Home() {
       {/* NOSOTROS */}
       <section className="bg-lust text-white py-12 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Nosotros</h2>
-          <p>
+          <h2 className="text-4xl font-bold mb-4">Nosotros</h2>
+          <p className="text-lg">
             En Reloncaví el cliente es nuestra prioridad, por lo que nos destacamos en ofrecer
             una atención cercana, profesional y a la medida de cada uno, apoyándolo en la
             logística de su negocio y respondiendo de manera rápida y eficiente a sus

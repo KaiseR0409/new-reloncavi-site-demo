@@ -1,15 +1,16 @@
 import useCarousel from "../hooks/useCarousel"
+import CountUp from "../components/CountUp"
 
 const STATS = [
-  { img: "/img/nosotros/TRABAJADOR.png", title: "250 trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
-  { img: "/img/nosotros/icono2.png", title: "65 Equipos móviles", desc: "entre grúas horquillas, cargadores frontales, palas graneleras, tolvas y plantas de mezcla y ensacado" },
-  { img: "/img/nosotros/icono1.png", title: "107.000 Metros cuadrados", desc: "de Bodega operados por nosotros: Empormontt 22.000 m2, Alto Bonito 8.000 m2, Mariquina 10.000 m2, Nueva Aldea 14.000 m2, Horcones 14.000 m2, MAPA 39.000 m2" },
+  { img: "/img/nosotros/TRABAJADOR.png", value: 250, label: "trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
+  { img: "/img/nosotros/icono2.png", value: 65, label: "Equipos móviles", desc: "entre grúas horquillas, cargadores frontales, palas graneleras, tolvas y plantas de mezcla y ensacado" },
+  { img: "/img/nosotros/icono1.png", value: 107000, label: "Metros cuadrados", desc: "de Bodega operados por nosotros: Empormontt 22.000 m2, Alto Bonito 8.000 m2, Mariquina 10.000 m2, Nueva Aldea 14.000 m2, Horcones 14.000 m2, MAPA 39.000 m2" },
 ]
 
 const VOLUMEN = [
-  { num: "300.000 ton.", desc: "Despachada desde bodegas" },
-  { num: "200.000 ton.", desc: "Descarga desde naves" },
-  { num: "3.400.000 adt", desc: "Celulosa despachada" },
+  { value: 300000, unit: "ton.", desc: "Despachada desde bodegas" },
+  { value: 200000, unit: "ton.", desc: "Descarga desde naves" },
+  { value: 3400000, unit: "adt", desc: "Celulosa despachada" },
 ]
 
 const CLIENTES = [
@@ -54,9 +55,9 @@ export default function Nosotros() {
       <section className="bg-isabelline py-12 px-6">
         <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.title} className="text-center">
-              <img src={s.img} alt={s.title} loading="lazy" className="mx-auto h-32 object-contain" />
-              <h3 className="text-xl font-bold text-lust mt-4">{s.title}</h3>
+            <div key={s.label} className="text-center">
+              <img src={s.img} alt={s.label} loading="lazy" className="mx-auto h-32 object-contain" />
+              <h3 className="text-xl font-bold text-lust mt-4"><CountUp value={s.value} /> {s.label}</h3>
               <p className="text-outer-space mt-2">{s.desc}</p>
             </div>
           ))}
@@ -72,8 +73,8 @@ export default function Nosotros() {
           <h3 className="text-3xl font-bold text-lust mb-8">Volumen Anual</h3>
           <div className="grid gap-8 md:grid-cols-3">
             {VOLUMEN.map((v) => (
-              <div key={v.num}>
-                <div className="text-4xl font-black">{v.num}</div>
+              <div key={v.unit + v.desc}>
+                <div className="text-4xl font-black"><CountUp value={v.value} /> {v.unit}</div>
                 <p className="mt-2 text-white/80 uppercase text-sm">{v.desc}</p>
               </div>
             ))}
