@@ -7,7 +7,7 @@ import { useState } from "react"
 const LINKS = [
   { to: "/", label: "Inicio" },
   { to: "/nosotros", label: "Nosotros" },
-  { to: "/servicios", label: "Negocios" },
+  { to: "/servicios", label: "Servicios" },
   { to: "/organizacion", label: "Organización" },
   { to: "/comunidad", label: "Juntos Somos Reloncaví" },
   { to: "/contacto", label: "Contacto" },

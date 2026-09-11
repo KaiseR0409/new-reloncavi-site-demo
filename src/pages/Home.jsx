@@ -1,22 +1,30 @@
+import { ArrowRight, Package, Ship } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { Link } from "react-router-dom"
 import useEmblaCarousel from "embla-carousel-react"
 
-const NEGOCIOS = [
-  { img: "/img/negocios/forestalrelon.webp", title: "Administración Bodegas Celulosa", href: "/servicios#bodegas" },
-  { img: "/img/negocios/granel.webp", title: "Ensacados y Despacho Fertilizantes", href: "/servicios#fertilizantes" },
-  { img: "/img/negocios/servicios.webp", title: "Estiba y Desestiba Portuarias", href: "/servicios#portuarias" },
+const SERVICIOS = [
+  {
+    img: "/img/servicios/granel.webp",
+    title: "Ensacados y Despacho Fertilizantes",
+    href: "/servicios#fertilizantes",
+    icon: Package,
+    desc: "Plantas de mezcla y ensacado, acopio y despacho de fertilizantes y graneles.",
+  },
+  {
+    img: "/img/servicios/servicios.webp",
+    title: "Estiba y Desestiba Portuarias",
+    href: "/servicios#portuarias",
+    icon: Ship,
+    desc: "Atención de naves bulk carrier y descarga de graneles con equipos especializados.",
+  },
 ]
 
 const HERO_MESSAGES = [
   {
     title: "Reloncaví",
     description: "Logística portuaria, almacenaje y despacho a lo largo del sur de Chile.",
-  },
-  {
-    title: "Almacenaje especializado",
-    description: "Bodegas y operaciones diseñadas para mantener tu carga en movimiento.",
   },
   {
     title: "Operaciones portuarias",
@@ -114,20 +122,38 @@ export default function Home() {
             requerimientos.
           </p>
         </div>
+        <Link to="/nosotros" className="inline-block mt-3 ml-0 text-white/80  font-semibold rounded hover:text-white/100 transition">
+            Leer más
+          </Link>
       </section>
 
       {/* NEGOCIOS */}
       <section className="bg-white-2 py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-center text-3xl font-bold text-lust mb-12">Negocios</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {NEGOCIOS.map((n) => (
-              <Link key={n.title} to={n.href} className="group bg-white rounded-xl shadow hover:shadow-lg overflow-hidden transition">
-                <div className="overflow-hidden h-52">
-                  <img src={n.img} alt={n.title} loading="lazy" decoding="async" width="1200" height="1200" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+          <h2 className="text-center text-4xl font-bold text-lust mt-2">Nuestros servicios</h2>
+          <div className="grid gap-8 md:grid-cols-2 mt-12">
+            {SERVICIOS.map((n) => (
+              <Link
+                key={n.title}
+                to={n.href}
+                className="group relative flex flex-col bg-white rounded-2xl overflow-hidden shadow-md transition-shadow duration-300 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lust"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img src={n.img} alt={n.title} loading="lazy" decoding="async" width="1200" height="1200" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/15" aria-hidden="true" />
+                  <div className="absolute top-4 left-4 rounded-full bg-white/95 p-3 shadow-md" aria-hidden="true">
+                    <n.icon size={22} strokeWidth={2.2} className="text-lust" />
+                  </div>
+                  <h3 className="absolute inset-x-0 bottom-0 p-6 text-2xl font-black text-white leading-snug drop-shadow-md">
+                    {n.title}
+                  </h3>
                 </div>
-                <div className="p-5 text-center font-semibold text-outer-space">
-                  {n.title}
+                <div className="flex-1 flex flex-col p-6 pt-5">
+                  <p className="text-sm text-outer-space/70 leading-relaxed">{n.desc}</p>
+                  <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-lust">
+                    Conocer más
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </span>
                 </div>
               </Link>
             ))}
