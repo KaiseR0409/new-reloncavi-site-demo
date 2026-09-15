@@ -55,6 +55,17 @@ html { scroll-behavior: smooth; }
   }
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-on {
+  opacity: 1;
+  transform: none;
+}
+
 .carousel-in {
   animation: carousel-in 0.55s ease-out;
 }
@@ -65,6 +76,12 @@ html { scroll-behavior: smooth; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-on {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
   .carousel-in {
     animation: none;
   }
