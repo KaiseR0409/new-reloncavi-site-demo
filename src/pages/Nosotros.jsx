@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react"
+
 import CountUp from "../components/CountUp"
 import StampedIcon from "../components/StampedIcon"
-import useCarousel from "../hooks/useCarousel"
-import useInView from "../hooks/useInView"
+import useEmblaCarousel from "embla-carousel-react"
 
 const STATS = [
   { img: "/img/nosotros/TRABAJADOR.png", value: 250, label: "trabajadores", desc: "que operan el Puerto de Puerto Montt y Plantas Celulosa" },
@@ -33,8 +34,22 @@ function StatCard({ s, idx }) {
 }
 
 export default function Nosotros() {
-  const [clientsRef, clientsInView] = useInView(0.1)
-  const clientIdx = useCarousel(CLIENTES.length, 3000, clientsInView)
+  const [clientsRef, clientsApi] = useEmblaCarousel({ loop: true })
+  const [selectedClient, setSelectedClient] = useState(0)
+
+  useEffect(() => {
+    if (!clientsApi) return
+    const update = () => setSelectedClient(clientsApi.selectedScrollSnap())
+    clientsApi.on("select", update)
+    update()
+    return () => clientsApi.off("select", update)
+  }, [clientsApi])
+
+  useEffect(() => {
+    if (!clientsApi || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    const id = window.setInterval(() => clientsApi.scrollNext(), 6500)
+    return () => window.clearInterval(id)
+  }, [clientsApi])
 
   return (
     <div>
@@ -95,18 +110,26 @@ export default function Nosotros() {
 
       {/* CLIENTES */}
       <section className="bg-white-2 py-12 px-6">
-        <h3 className="text-center text-4xl font-bold text-lust mb-8">Principales Clientes</h3>
-        <div ref={clientsRef} className="max-w-3xl mx-auto">
-          <div className="relative">
-            <img key={clientIdx} src={CLIENTES[clientIdx]} alt="Clientes" loading="lazy" decoding="async" className="w-full rounded-lg shadow carousel-in" />
+        <h3 className="text-center text-4xl font-bold text-lust mb-8">Nuestros principales clientes</h3>
+        <div className="max-w-3xl mx-auto">
+          <div ref={clientsRef} className="overflow-hidden" aria-roledescription="carrusel" aria-label="Clientes Reloncaví">
+            <div className="flex touch-pan-y">
+              {CLIENTES.map((c) => (
+                <div key={c} className="min-w-0 flex-[0_0_100%]">
+                  <img src={c} alt="Clientes" loading="lazy" decoding="async" className="w-full rounded-lg shadow" />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex justify-center gap-2 mt-4">
-            {CLIENTES.map((_, idx) => (
+          <div className="mt-6 flex justify-center gap-2" aria-label="Selector de clientes">
+            {CLIENTES.map((c, index) => (
               <button
-                key={idx}
-                onClick={() => {}}
-                className={`w-3 h-3 rounded-full ${idx === clientIdx ? "bg-lust" : "bg-gray-300"}`}
-                aria-label={`Cliente ${idx + 1}`}
+                key={c}
+                type="button"
+                onClick={() => clientsApi?.scrollTo(index)}
+                className={`h-2.5 rounded-full transition-all duration-500 ${selectedClient === index ? "w-8 bg-lust" : "w-2.5 bg-gray-300 hover:bg-lust/80"}`}
+                aria-label={`Cliente ${index + 1}`}
+                aria-current={selectedClient === index ? "true" : undefined}
               />
             ))}
           </div>

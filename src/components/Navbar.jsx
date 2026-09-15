@@ -9,7 +9,7 @@ const LINKS = [
   { to: "/nosotros", label: "Nosotros" },
   { to: "/servicios", label: "Servicios" },
   { to: "/organizacion", label: "Organización" },
-  { to: "/comunidad", label: "Juntos Somos Reloncaví" },
+  //{ to: "/comunidad", label: "Juntos Somos Reloncaví" },
   { to: "/contacto", label: "Contacto" },
 ]
 
