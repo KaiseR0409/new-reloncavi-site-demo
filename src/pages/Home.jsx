@@ -9,14 +9,12 @@ const SERVICIOS = [
     img: "/img/servicios/granel.webp",
     title: "Ensacados y Despacho Fertilizantes",
     href: "/servicios#fertilizantes",
-    icon: Package,
     desc: "Plantas de mezcla y ensacado, acopio y despacho de fertilizantes y graneles.",
   },
   {
     img: "/img/servicios/servicios.webp",
     title: "Estiba y Desestiba Portuarias",
     href: "/servicios#portuarias",
-    icon: Ship,
     desc: "Atención de naves bulk carrier y descarga de graneles con equipos especializados.",
   },
 ]
@@ -87,6 +85,7 @@ export default function Home() {
           <div className="w-full max-w-5xl">
             <div ref={heroRef} className="overflow-hidden" aria-roledescription="carrusel" aria-label="Servicios Reloncaví">
               <div className="flex touch-pan-y">
+                {/*MENSAJES HERO*/}
                 {HERO_MESSAGES.map((message) => (
                   <article key={message.title} className="min-w-0 flex-[0_0_100%] px-2">
                     <h1 className="text-4xl md:text-6xl font-black tracking-tight">{message.title}</h1>
@@ -95,6 +94,8 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/*MENSAJES NAVEGACION*/}
             <div className="mt-8 flex justify-center gap-2" aria-label="Selector de mensajes">
               {HERO_MESSAGES.map((message, index) => (
                 <button
@@ -141,9 +142,7 @@ export default function Home() {
                 <div className="relative h-64 overflow-hidden">
                   <img src={n.img} alt={n.title} loading="lazy" decoding="async" width="1200" height="1200" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/15" aria-hidden="true" />
-                  <div className="absolute top-4 left-4 rounded-full bg-white/95 p-3 shadow-md" aria-hidden="true">
-                    <n.icon size={22} strokeWidth={2.2} className="text-lust" />
-                  </div>
+                  
                   <h3 className="absolute inset-x-0 bottom-0 p-6 text-2xl font-black text-white leading-snug drop-shadow-md">
                     {n.title}
                   </h3>
